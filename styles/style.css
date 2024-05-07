@@ -69,3 +69,13 @@ body {
     width: 30%;
     height: 20px;
 }
+
+.validation-failed, .validation-failed:hover {
+    background-color: #ce0202ce;
+}
+.validation-off, .validation-off:hover {
+    background-color: #1f1f1f;
+}
+.validation-passed, .validation-passed:hover {
+    background-color: #448637;
+}
