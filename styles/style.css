@@ -2,6 +2,14 @@
     font-size: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.noselect {
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 input {
     width: 350px;
     border: none;
@@ -27,8 +35,8 @@ body {
 .btn, .input-block {
     margin: 10px;
     padding: 10px;
-    border: darkgrey solid 1px;
-    border-radius: 5px;
+    border: darkgrey solid 2px;
+    border-radius: 10px;
 }
 
 .copy-btn{
@@ -36,11 +44,18 @@ body {
     height: 30px;
     padding: 4px;
     margin: 10px;
-    border: darkgrey solid 1px;
-    border-radius: 5px;
+    border: darkgrey solid 2px;
+    border-radius: 10px;
 }
 .btn:hover, .copy-btn:hover {
     background-color: #000;
+    
+}
+
+.btn:active, .copy-btn:active{
+    border:2px solid #4898d6;
+    border-radius: 10px;
+    
 }
 
 .btn-generate-all{
@@ -71,11 +86,11 @@ body {
 }
 
 .validation-failed, .validation-failed:hover {
-    background-color: #ce0202ce;
+    border: 1px solid #ce0202ce;
 }
 .validation-off, .validation-off:hover {
-    background-color: #1f1f1f;
+    border: 1px solid darkgrey;
 }
 .validation-passed, .validation-passed:hover {
-    background-color: #448637;
+    border: 1px solid #448637;
 }
