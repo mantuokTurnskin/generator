@@ -122,8 +122,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-ul-ogrn input-block" id="OGNNInputBlock">
-                            <input type="text" name="input-text-ul-ogrn" id="OGNNInput"
+                        <div class="input-ul-ogrn input-block" id="OGRNInputBlock">
+                            <input type="text" name="input-text-ul-ogrn" id="OGRNInput"
                                 placeholder="ОГРН (13 символов)">
                         </div>
                     </div>
@@ -131,12 +131,12 @@
             </div>
             <div class="ip">
                 <div class="ip-inn item-block">
-                    <div class="generate-ip-inn btn block-btn btn-text-color">
+                    <div class="generate-ip-inn btn block-btn btn-text-color" id="generateINNIPBtn">
                         ИНН ИП/ФЛ
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-ip-inn btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyINNIPBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -146,19 +146,19 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-ip-inn input-block">
-                            <input type="text" name="input-text-ip-inn" id=""
+                        <div class="input-ip-inn input-block" id="INNIPInputBlock">
+                            <input type="text" name="input-text-ip-inn" id="INNIPInput"
                                 placeholder="ИНН ИП и физлица (12 символов)">
                         </div>
                     </div>
                 </div>
                 <div class="ip-ogrnip item-block">
-                    <div class="generate-ip-ogrnip btn block-btn btn-text-color">
+                    <div class="generate-ip-ogrnip btn block-btn btn-text-color" id="generateOGRNIPBtn">
                         ОГРНИП
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-ip-ogrnip btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyOGRNIPBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -168,8 +168,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-ip-ogrnip input-block">
-                            <input type="text" name="input-text-ip-ogrnip" id=""
+                        <div class="input-ip-ogrnip input-block" id="OGRNIPInputBlock">
+                            <input type="text" name="input-text-ip-ogrnip" id="OGRNIPInput"
                                 placeholder="ОГРНИП (15 символов)">
                         </div>
                     </div>
@@ -177,12 +177,12 @@
             </div>
             <div class="fl">
                 <div class="fl-snils item-block">
-                    <div class="generate-fl-snils btn block-btn btn-text-color">
+                    <div class="generate-fl-snils btn block-btn btn-text-color" id="generateSNILSBtn">
                         СНИЛС
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-fl-snils btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copySNILSBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -192,8 +192,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-fl-snils input-block">
-                            <input type="text" name="input-text-fl-snils" id=""
+                        <div class="input-fl-snils input-block" id="SNILSInputBlock">
+                            <input type="text" name="input-text-fl-snils" id="SNILSInput"
                                 placeholder="СНИЛС">
                         </div>
                     </div>
@@ -201,12 +201,12 @@
             </div>
             <div class="uuid">
                 <div class="uuid item-block">
-                    <div class="generate-uuid btn block-btn btn-text-color">
+                    <div class="generate-uuid btn block-btn btn-text-color" id="generateUUIDBtn">
                         UUID
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-uuid btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyUUIDBlock">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -216,8 +216,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-uuid input-block">
-                            <input type="text" name="input-text-uuid" id=""
+                        <div class="input-uuid input-block" id="UUIDInputBlock">
+                            <input type="text" name="input-text-uuid" id="UUIDInput"
                                 placeholder="UUID">
                         </div>
                     </div>
@@ -225,12 +225,12 @@
             </div>
             <div class="fio">
                 <div class="fio item-block">
-                    <div class="generate-fio btn block-btn btn-text-color">
+                    <div class="generate-fio btn block-btn btn-text-color" id="generateFIOBtn">
                         ФИО
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-fio btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyFIOBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -240,8 +240,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-fio input-block">
-                            <input type="text" name="input-text-fio" id=""
+                        <div class="input-fio input-block" id="FIOInputBlock">
+                            <input type="text" name="input-text-fio" id="FIOInput"
                                 placeholder="ФИО сотрудника(цы)">
                         </div>
                     </div>
@@ -249,12 +249,12 @@
             </div>
             <div class="organisation-name">
                 <div class="organisation-name item-block">
-                    <div class="generate-fio btn block-btn btn-text-color">
+                    <div class="generate-fio btn block-btn btn-text-color" id="generateOrgNameBtn">
                         Название организации
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-organisation-name btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyOrgNameBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -264,8 +264,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-organisation-name input-block">
-                            <input type="text" name="input-text-organisation-name" id=""
+                        <div class="input-organisation-name input-block" id="OrgNameInputBlock">
+                            <input type="text" name="input-text-organisation-name" id="OrgNameInput"
                                 placeholder="Название организации">
                         </div>
                     </div>
@@ -273,12 +273,12 @@
             </div>
             <div class="kz">
                 <div class="bin item-block">
-                    <div class="generate-bin btn block-btn btn-text-color">
+                    <div class="generate-bin btn block-btn btn-text-color" id="generateBINBtn">
                         БИН
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-bin btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyBINBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -288,19 +288,19 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-bin input-block">
-                            <input type="text" name="input-text-bin" id=""
+                        <div class="input-bin input-block" id="BINInputBlock">
+                            <input type="text" name="input-text-bin" id="BINInput"
                                 placeholder="Аналог ИНН организации в Казахстане">
                         </div>
                     </div>
                 </div>
                 <div class="iin item-block">
-                    <div class="generate-iin btn block-btn btn-text-color">
+                    <div class="generate-iin btn block-btn btn-text-color" id="generateIINBtn">
                         ИИН
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-iin btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyIINBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -310,8 +310,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-iin input-block">
-                            <input type="text" name="input-text-iin" id=""
+                        <div class="input-iin input-block" id="IINInputBlock">
+                            <input type="text" name="input-text-iin" id="IINInput"
                                 placeholder="Аналог ИНН физлица в Казахстане">
                         </div>
                     </div>
@@ -319,12 +319,12 @@
             </div>
             <div class="rb">
                 <div class="unn item-block">
-                    <div class="generate-unn btn block-btn btn-text-color">
+                    <div class="generate-unn btn block-btn btn-text-color" id="generateUNNBtn">
                         УНН
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-unn btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyUNNBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -334,19 +334,19 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-unn input-block">
-                            <input type="text" name="input-text-unn" id=""
+                        <div class="input-unn input-block" id="UNNInputBlock">
+                            <input type="text" name="input-text-unn" id="UNNInput"
                                 placeholder="Аналог ИНН организации в Беларуси">
                         </div>
                     </div>
                 </div>
                 <div class="unp item-block">
-                    <div class="generate-unp btn block-btn btn-text-color">
+                    <div class="generate-unp btn block-btn btn-text-color" id="generateUNPBtn">
                         УНП
                     </div>
                     <div class="copy-and-input-block">
                         <div class="copy-unp btn-text-color">
-                            <div class="copy-btn">
+                            <div class="copy-btn" id="copyUNPBtn">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -356,8 +356,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="input-unp input-block">
-                            <input type="text" name="input-text-unp" id=""
+                        <div class="input-unp input-block" id="UNPInputBlock">
+                            <input type="text" name="input-text-unp" id="UNPInput"
                                 placeholder="Аналог ИНН физлица в Белауси">
                         </div>
                     </div>

@@ -140,8 +140,8 @@ const KPP = {
 const OGRN = {
     generateBtn: document.getElementById("generateOGRNBtn"),
     copyBtn: document.getElementById("copyOGRNBtn"),
-    input: document.getElementById("OGNNInput"),
-    validationElement: document.getElementById('OGNNInputBlock'),
+    input: document.getElementById("OGRNInput"),
+    validationElement: document.getElementById('OGRNInputBlock'),
     getNewValue: (part) => {
         if(!(/^[0-9]+$/i.test(part)) || part.length > 12) part = '';
         for(let i = part.length; i < 12; i++) part += (Math.floor(Math.random() * 10)).toString();
