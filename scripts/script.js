@@ -177,10 +177,10 @@ const OGRN = {
 };
 
 const INNFL = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateINNFLBtn"),
+    copyBtn: document.getElementById("copyINNFLBtn"),
+    input: document.getElementById("INNFLInput"),
+    validationElement: document.getElementById("INNFLInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -200,10 +200,10 @@ const INNFL = {
 };
 
 const OGRNIP = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateOGRNIPBtn"),
+    copyBtn: document.getElementById("copyOGRNIPBtn"),
+    input: document.getElementById("OGRNIPInput"),
+    validationElement: document.getElementById("OGRNIPInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -223,10 +223,10 @@ const OGRNIP = {
 };
 
 const SNILS = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateSNILSBtn"),
+    copyBtn: document.getElementById("copySNILSBtn"),
+    input: document.getElementById("SNILSInput"),
+    validationElement: document.getElementById("SNILSInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -246,56 +246,10 @@ const SNILS = {
 };
 
 const UUID = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
-    getNewValue: (part) => { },
-    setNewValue: () => { },
-    validateValue: (value) => { },
-    setValidation: () => {
-        if (this.validateValue(this.input.value)) {
-            this.validationElement.classList.add('validation-passed');
-            this.validationElement.classList.remove('validation-failed');
-            this.validationElement.classList.remove('validation-off');
-        }
-        else {
-            this.validationElement.classList.add('validation-failed');
-            this.validationElement.classList.remove('validation-passed');
-            this.validationElement.classList.remove('validation-off');
-        }
-    },
-    copyValue: () => { }
-};
-
-const FIO = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
-    getNewValue: (part) => { },
-    setNewValue: () => { },
-    validateValue: (value) => { },
-    setValidation: () => {
-        if (this.validateValue(this.input.value)) {
-            this.validationElement.classList.add('validation-passed');
-            this.validationElement.classList.remove('validation-failed');
-            this.validationElement.classList.remove('validation-off');
-        }
-        else {
-            this.validationElement.classList.add('validation-failed');
-            this.validationElement.classList.remove('validation-passed');
-            this.validationElement.classList.remove('validation-off');
-        }
-    },
-    copyValue: () => { }
-};
-
-const orgName = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateUUIDBtn"),
+    copyBtn: document.getElementById("copyUUIDBtn"),
+    input: document.getElementById("UUIDInput"),
+    validationElement: document.getElementById("UUIDInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -315,10 +269,10 @@ const orgName = {
 };
 
 const BIN = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateBINBtn"),
+    copyBtn: document.getElementById("copyBINBtn"),
+    input: document.getElementById("BINInput"),
+    validationElement: document.getElementById("BINInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -338,10 +292,10 @@ const BIN = {
 };
 
 const IIN = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateIINBtn"),
+    copyBtn: document.getElementById("copyIINBtn"),
+    input: document.getElementById("IINInput"),
+    validationElement: document.getElementById("IINInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -361,10 +315,10 @@ const IIN = {
 };
 
 const UNN = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateUNNBtn"),
+    copyBtn: document.getElementById("copyUNNBtn"),
+    input: document.getElementById("UNNInput"),
+    validationElement: document.getElementById("UNNInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
@@ -384,10 +338,10 @@ const UNN = {
 };
 
 const UNP = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
+    generateBtn: document.getElementById("generateUNPBtn"),
+    copyBtn: document.getElementById("copyUNPBtn"),
+    input: document.getElementById("UNPInput"),
+    validationElement: document.getElementById("UNPInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
     validateValue: (value) => { },
