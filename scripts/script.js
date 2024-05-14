@@ -138,14 +138,27 @@ const KPP = {
 };
 
 const OGRN = {
-    generateBtn: document.getElementById(""),
-    copyBtn: document.getElementById(""),
-    input: document.getElementById(""),
-    validationElement: document.getElementsByClassName("")[0],
-    getNewValue: (part) => { },
-    setNewValue: () => { },
-    validateValue: (value) => { },
-    setValidation: () => {
+    generateBtn: document.getElementById("generateOGRNBtn"),
+    copyBtn: document.getElementById("copyOGRNBtn"),
+    input: document.getElementById("OGNNInput"),
+    validationElement: document.getElementById('OGNNInputBlock'),
+    getNewValue: (part) => {
+        if(!(/^[0-9]+$/i.test(part)) || part.length > 12) part = '';
+        for(let i = part.length; i < 12; i++) part += (Math.floor(Math.random() * 10)).toString();
+        return part + (parseInt(part) % 11).toString().slice(-1);
+    },
+    setNewValue: () => {
+        OGRN.input.value = OGRN.getNewValue(OGRN.input.value);
+        OGRN.setValidation();
+    },
+    validateValue: (value) => {
+        value = value.replaceAll(' ', '');
+        if(value.length != 13) return false;
+        if(!(/^[0-9]+$/i.test(value))) return false;
+        if((parseInt(value.slice(0, 12)) % 11).toString().slice(-1) != value[12]) return false;
+        return true;
+    },
+    setValidation: function() {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -157,7 +170,10 @@ const OGRN = {
             this.validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: () => { }
+    copyValue: () => {
+        navigator.clipboard.writeText(OGRN.input.value);
+        console.log(`Значение ОГРН: ${OGRN.input.value} скопироано в буфер обмена.`);
+    }
 };
 
 const INNFL = {
@@ -421,3 +437,11 @@ KPP.input3.addEventListener('change', () => KPP.setValidation(3));
 KPP.copyBtn1.addEventListener('click', () => KPP.copyValue(1));
 KPP.copyBtn2.addEventListener('click', () => KPP.copyValue(2));
 KPP.copyBtn3.addEventListener('click', () => KPP.copyValue(3));
+
+// Слушаем события блока ОГРН
+OGRN.generateBtn.addEventListener('click', ()=> {
+    OGRN.setNewValue();
+    OGRN.setValidation();
+});
+OGRN.input.addEventListener('change', () => OGRN.setValidation());
+OGRN.copyBtn.addEventListener('click', () => OGRN.copyValue());
