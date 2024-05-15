@@ -3,12 +3,8 @@ const INNUL = {
     copyBtn: document.getElementById("copyINNULBtn"),
     input: document.getElementById("INNULInput"),
     validationElement: document.getElementsByClassName("INNULValidation")[0],
-    getNewValue: function (part) {
+    getNewValue: (part) => {
         let inn = []
-        /*
-            Функция на основании веденного значения в поле ИННЮЛ генерирует через
-            random значение ИНН по алгоритму
-        */
         if (isNaN(parseInt(part)) || part.length >= 10) part = '';
         if (part.length < 10) inn = part.split('');
         for (let i = part.length; i < 10; i++) inn[i] = Math.floor(Math.random() * 10);
@@ -19,10 +15,10 @@ const INNUL = {
         return inn.join('');
     },
     setNewValue: function () {
-        /*
-            Метод устанавливает сгенерированное значение в поле ИННЮЛ
-        */
         this.input.value = this.getNewValue(this.input.value);
+    },
+    setEmptyValue: () => {
+        INNUL.input.value = '';
     },
     validateValue: function (value) {
         if (value.length != 10) return false;
@@ -86,6 +82,11 @@ const KPP = {
         this.input1.value = this.getNewValue(1, this.input1.value);
         this.input2.value = this.getNewValue(2, this.input1.value.slice(0,4));
         this.input3.value = this.getNewValue(3, this.input1.value.slice(0,4));
+    },
+    setEmptyValue: () => {
+        KPP.input1.value = '';
+        KPP.input2.value = '';
+        KPP.input3.value = '';
     },
     validateValue: (value) => {
         if (value.length != 9) return false;
@@ -151,6 +152,9 @@ const OGRN = {
         OGRN.input.value = OGRN.getNewValue(OGRN.input.value);
         OGRN.setValidation();
     },
+    setEmptyValue: () => {
+        OGRN.input.value = '';
+    },
     validateValue: (value) => {
         value = value.replaceAll(' ', '');
         if(value.length != 13) return false;
@@ -181,10 +185,39 @@ const INNFL = {
     copyBtn: document.getElementById("copyINNFLBtn"),
     input: document.getElementById("INNFLInput"),
     validationElement: document.getElementById("INNFLInputBlock"),
-    getNewValue: (part) => { },
-    setNewValue: () => { },
-    validateValue: (value) => { },
-    setValidation: () => {
+    getNewValue: (part) => {
+        if (isNaN(parseInt(part)) || part.length >= 10) part = '';
+        for (let i = part.length; i < 10; i++) part += (Math.floor(Math.random() * 10)).toString();
+        const coef1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
+        const coef2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
+        let sum1 = 0, sum2 = 0;
+        for (let i = 0; i < coef1.length; i++) sum1 += parseInt(part[i]) * coef1[i];
+        part += (sum1 % 11 % 10).toString();
+        for (let i = 0; i < coef2.length; i++) sum2 += parseInt(part[i]) * coef2[i];
+        part += (sum2 % 11 % 10).toString();
+        return part;
+    },
+    setNewValue: () => {
+        INNFL.input.value = INNFL.getNewValue(INNFL.input.value);
+        INNFL.setValidation();
+    },
+    setEmptyValue: () => {
+        INNFL.input.value = '';
+    },
+    validateValue: (value) => {
+        value = value.replaceAll(' ', '');
+        if(value.length != 12) return false;
+        if(!(/^[0-9]+$/i.test(value))) return false;
+        const coef1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
+        const coef2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
+        let sum1 = 0, sum2 = 0;
+        for (let i = 0; i < coef1.length; i++) sum1 += parseInt(value[i]) * coef1[i];
+        if (value[10] !== (sum1 % 11 % 10).toString()) return false;
+        for (let i = 0; i < coef2.length; i++) sum2 += parseInt(value[i]) * coef2[i];
+        if (value[11] !== (sum2 % 11 % 10).toString()) return false;
+        return true;
+    },
+    setValidation: function() {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -196,7 +229,12 @@ const INNFL = {
             this.validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: () => { }
+    copyValue: () => {
+        if (INNFL.input.value) {
+            navigator.clipboard.writeText(INNFL.input.value);
+            console.log(`Значение ИННФЛ: ${INNFL.input.value} скопироано в буфер обмена.`)
+        }
+    }
 };
 
 const OGRNIP = {
@@ -204,10 +242,26 @@ const OGRNIP = {
     copyBtn: document.getElementById("copyOGRNIPBtn"),
     input: document.getElementById("OGRNIPInput"),
     validationElement: document.getElementById("OGRNIPInputBlock"),
-    getNewValue: (part) => { },
-    setNewValue: () => { },
-    validateValue: (value) => { },
-    setValidation: () => {
+    getNewValue: (part) => {
+        if(!(/^[0-9]+$/i.test(part)) || part.length > 14) part = '';
+        for(let i = part.length; i < 14; i++) part += (Math.floor(Math.random() * 10)).toString();
+        return part + (parseInt(part) % 13).toString().slice(-1);
+    },
+    setNewValue: () => {
+        OGRNIP.input.value = OGRNIP.getNewValue(OGRNIP.input.value);
+        OGRNIP.setValidation();
+    },
+    setEmptyValue: () => {
+        OGRNIP.input.value = '';
+    },
+    validateValue: (value) => {
+        value = value.replaceAll(' ', '');
+        if(value.length != 15) return false;
+        if(!(/^[0-9]+$/i.test(value))) return false;
+        if((parseInt(value.slice(0, 14)) % 13).toString().slice(-1) != value[14]) return false;
+        return true;
+    },
+    setValidation: function() {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -219,7 +273,10 @@ const OGRNIP = {
             this.validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: () => { }
+    copyValue: () => {
+        navigator.clipboard.writeText(OGRNIP.input.value);
+        console.log(`Значение ОГРНИП: ${OGRNIP.input.value} скопироано в буфер обмена.`);
+    }
 };
 
 const SNILS = {
@@ -229,8 +286,11 @@ const SNILS = {
     validationElement: document.getElementById("SNILSInputBlock"),
     getNewValue: (part) => { },
     setNewValue: () => { },
+    setEmptyValue: () => {
+        SNILS.input.value = '';
+    },
     validateValue: (value) => { },
-    setValidation: () => {
+    setValidation: function() {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -370,6 +430,42 @@ function deleteAll(part) {
     return "pass"
 }
 
+// Слушаем события кнопки Сгенерировать всё
+const generateAllBtn = document.getElementById("generateAllBtn");
+generateAllBtn.addEventListener('click', () =>{
+    INNUL.setNewValue();
+    INNUL.setValidation();
+    KPP.setNewValue();
+    KPP.setValidation(1);
+    KPP.setValidation(2);
+    KPP.setValidation(3);
+    OGRN.setNewValue();
+    OGRN.setValidation();
+    INNFL.setNewValue();
+    INNFL.setValidation();
+    OGRNIP.setNewValue();
+    OGRNIP.setValidation();
+    
+});
+
+// Слушаем события кнопки Сбросить всё
+const deleteAllBtn = document.getElementById("deleteAllBtn");
+deleteAllBtn.addEventListener('click', () =>{
+    INNUL.setEmptyValue();
+    INNUL.setValidation();
+    KPP.setEmptyValue();
+    KPP.setValidation(1);
+    KPP.setValidation(2);
+    KPP.setValidation(3);
+    OGRN.setEmptyValue();
+    OGRN.setValidation();
+    INNFL.setEmptyValue();
+    INNFL.setValidation();
+    OGRNIP.setEmptyValue();
+    OGRNIP.setValidation();
+    
+});
+
 // Слушаем события блока ИННЮЛ
 INNUL.generateBtn.addEventListener("click", () => {
     INNUL.setNewValue();
@@ -399,3 +495,19 @@ OGRN.generateBtn.addEventListener('click', ()=> {
 });
 OGRN.input.addEventListener('change', () => OGRN.setValidation());
 OGRN.copyBtn.addEventListener('click', () => OGRN.copyValue());
+
+// Слушаем события блока ИННФЛ
+INNFL.generateBtn.addEventListener('click', ()=> {
+    INNFL.setNewValue();
+    INNFL.setValidation();
+});
+INNFL.input.addEventListener('change', () => INNFL.setValidation());
+INNFL.copyBtn.addEventListener('click', () => INNFL.copyValue());
+
+// Слушаем события блока ОГРНИП
+OGRNIP.generateBtn.addEventListener('click', ()=> {
+    OGRNIP.setNewValue();
+    OGRNIP.setValidation();
+});
+OGRNIP.input.addEventListener('change', () => OGRNIP.setValidation());
+OGRNIP.copyBtn.addEventListener('click', () => OGRNIP.copyValue());
