@@ -4,32 +4,28 @@ const INNUL = {
     input: document.getElementById("INNULInput"),
     validationElement: document.getElementsByClassName("INNULValidation")[0],
     getNewValue: (part) => {
-        let inn = []
-        if (isNaN(parseInt(part)) || part.length >= 10) part = '';
-        if (part.length < 10) inn = part.split('');
-        for (let i = part.length; i < 10; i++) inn[i] = Math.floor(Math.random() * 10);
-        const cof = [2, 4, 10, 3, 5, 9, 4, 6, 8];
+        if (isNaN(parseInt(part)) || part.length > 9) part = '';
+        for (let i = part.length; i < 9; i++) part += (Math.floor(Math.random() * 10)).toString();
+        const coef = [2, 4, 10, 3, 5, 9, 4, 6, 8];
         let sum = 0;
-        for (let i = 0; i < cof.length; i++) sum += inn[i] * cof[i];
-        inn[9] = (sum % 11 < 10) ? sum % 11 : 0;
-        return inn.join('');
+        for (let i = 0; i < coef.length; i++) sum += parseInt(part[i]) * coef[i];
+        part += (sum % 11 % 10).toString();
+        return part;
     },
-    setNewValue: function () {
-        this.input.value = this.getNewValue(this.input.value);
+    setNewValue: () => {
+        INNUL.input.value = INNUL.getNewValue(INNUL.input.value);
     },
     setEmptyValue: () => {
         INNUL.input.value = '';
     },
-    validateValue: function (value) {
+    validateValue: (value) => {
         if (value.length != 10) return false;
         if (isNaN(parseInt(value))) return false;
         let valueToArray = value.split('');
-        const cof = [2, 4, 10, 3, 5, 9, 4, 6, 8];
+        const coef = [2, 4, 10, 3, 5, 9, 4, 6, 8];
         let sum = 0;
-        for (let i = 0; i < cof.length; i++) {
-            sum += valueToArray[i] * cof[i];
-        }
-        if (valueToArray[9] != sum % 11) return false;
+        for (let i = 0; i < coef.length; i++) sum += parseInt(value[i]) * coef[i];
+        if (parseInt(value[9]) != sum % 11 % 10) return false;
         return true;
     },
     setValidation: function () {
@@ -44,7 +40,7 @@ const INNUL = {
             this.validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: function () {
+    copyValue: () => {
         if (INNUL.input.value) {
             navigator.clipboard.writeText(INNUL.input.value);
             console.log(`Значение ИННЮЛ: ${INNUL.input.value} скопироано в буфер обмена.`)
