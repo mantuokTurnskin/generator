@@ -92,7 +92,6 @@ const KPP = {
         return true;
     },
     setValidation: function (inputNumber) {
-        let input, validateValue;
 
         if (inputNumber == 1) {
             inputThis = this.input1.value;
@@ -277,9 +276,12 @@ const OGRNIP = {
 
 const SNILS = {
     generateBtn: document.getElementById("generateSNILSBtn"),
-    copyBtn: document.getElementById("copySNILSBtn"),
-    input: document.getElementById("SNILSInput"),
-    validationElement: document.getElementById("SNILSInputBlock"),
+    copyBtn1: document.getElementById("copySNILSBtn1"),
+    copyBtn2: document.getElementById("copySNILSBtn2"),
+    input1: document.getElementById("SNILSInput1"),
+    input2: document.getElementById("SNILSInput2"),
+    validationElement1: document.getElementById("SNILSInputBlock1"),
+    validationElement2: document.getElementById("SNILSInputBlock2"),
     getNewValue: (value) => {
         value = value.replaceAll(' ', '').replaceAll('-', '');
         if (value.length > 10 || !(/^[0-9]+$/.test(value))) value = '';
@@ -293,11 +295,15 @@ const SNILS = {
         return value;
     },
     setNewValue: () => {
-        SNILS.input.value = SNILS.getNewValue(SNILS.input.value);
-        SNILS.setValidation();
+        const value = SNILS.getNewValue(SNILS.input1.value);
+        SNILS.input1.value = value;
+        SNILS.input2.value = `${value.slice(0,3)}-${value.slice(3,6)}-${value.slice(6,9)} ${value.slice(-2)}`;
+        SNILS.setValidation(1);
+        SNILS.setValidation(2);
     },
     setEmptyValue: () => {
-        SNILS.input.value = '';
+        SNILS.input1.value = '';
+        SNILS.input2.value = '';
     },
     validateValue: (value) => {
         value = value.replaceAll(' ', '').replaceAll('-', '');
@@ -312,21 +318,35 @@ const SNILS = {
                 (controlNumber === sum % 101 % 100))) return false;
         return true;
     },
-    setValidation: function () {
-        if (this.validateValue(this.input.value)) {
-            this.validationElement.classList.add('validation-passed');
-            this.validationElement.classList.remove('validation-failed');
-            this.validationElement.classList.remove('validation-off');
+    setValidation: (inputNumber) => {
+        if (inputNumber == 1) {
+            inputThis = SNILS.input1.value;
+            validationElement = SNILS.validationElement1;
+        }
+        if (inputNumber == 2) {
+            inputThis = SNILS.input2.value;
+            validationElement = SNILS.validationElement2;
+        }
+        if (SNILS.validateValue(inputThis)) {
+            validationElement.classList.add('validation-passed');
+            validationElement.classList.remove('validation-failed');
+            validationElement.classList.remove('validation-off');
         }
         else {
-            this.validationElement.classList.add('validation-failed');
-            this.validationElement.classList.remove('validation-passed');
-            this.validationElement.classList.remove('validation-off');
+            validationElement.classList.add('validation-failed');
+            validationElement.classList.remove('validation-passed');
+            validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: () => {
-        navigator.clipboard.writeText(SNILS.input.value);
-        console.log(`Значение СНИЛС: ${SNILS.input.value} скопироано в буфер обмена.`);
+    copyValue: (btnNumber) => {
+        if (btnNumber == 1 && SNILS.input1.value) {
+            navigator.clipboard.writeText(SNILS.input1.value);
+            console.log(`Значение СНИЛС без разделителей: ${SNILS.input1.value} скопироано в буфер обмена.`)
+        }
+        if (btnNumber == 2 && SNILS.input2.value) {
+            navigator.clipboard.writeText(SNILS.input2.value);
+            console.log(`Значение СНИЛС с разделителями: ${SNILS.input2.value} скопироано в буфер обмена.`)
+        }
     }
 };
 
@@ -491,7 +511,8 @@ deleteAllBtn.addEventListener('click', () => {
     OGRNIP.setEmptyValue();
     OGRNIP.setValidation();
     SNILS.setEmptyValue();
-    SNILS.setValidation();
+    SNILS.setValidation(1);
+    SNILS.setValidation(2);
 
 });
 
@@ -546,5 +567,7 @@ SNILS.generateBtn.addEventListener('click', () => {
     SNILS.setNewValue();
     SNILS.setValidation();
 });
-SNILS.input.addEventListener('change', () => SNILS.setValidation());
-SNILS.copyBtn.addEventListener('click', () => SNILS.copyValue());
+SNILS.input1.addEventListener('change', () => SNILS.setValidation(1));
+SNILS.input2.addEventListener('change', () => SNILS.setValidation(2));
+SNILS.copyBtn1.addEventListener('click', () => SNILS.copyValue(1));
+SNILS.copyBtn2.addEventListener('click', () => SNILS.copyValue(2));
