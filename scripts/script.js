@@ -59,7 +59,7 @@ const KPP = {
     inputBlock1: document.getElementById("KPPInputBlock1"),
     inputBlock2: document.getElementById("KPPInputBlock2"),
     inputBlock3: document.getElementById("KPPInputBlock3"),
-    getNewValue: function(inputNumber, part) {
+    getNewValue: function (inputNumber, part) {
         if (isNaN(parseInt(part.slice(0, 4))) || part.length >= 9) part = '';
         if (!part && INNUL.input.value) part = INNUL.input.value;
         if (part.length > 4) part = part.slice(0, 4);
@@ -70,14 +70,14 @@ const KPP = {
             const abc = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
             while (part.length < 6) part += abc[Math.floor(Math.random() * abc.length)];;
         }
-        
+
         while (part.length < 9) part += (Math.floor(Math.random() * 10)).toString();
         return part;
     },
-    setNewValue: function() {
+    setNewValue: function () {
         this.input1.value = this.getNewValue(1, this.input1.value);
-        this.input2.value = this.getNewValue(2, this.input1.value.slice(0,4));
-        this.input3.value = this.getNewValue(3, this.input1.value.slice(0,4));
+        this.input2.value = this.getNewValue(2, this.input1.value.slice(0, 4));
+        this.input3.value = this.getNewValue(3, this.input1.value.slice(0, 4));
     },
     setEmptyValue: () => {
         KPP.input1.value = '';
@@ -91,7 +91,7 @@ const KPP = {
         if (!(/^\d{3}$/.test(value.slice(6)))) return false;
         return true;
     },
-    setValidation: function(inputNumber) {
+    setValidation: function (inputNumber) {
         let input, validateValue;
 
         if (inputNumber == 1) {
@@ -118,7 +118,7 @@ const KPP = {
         }
 
     },
-    copyValue: function(btnNumber) {
+    copyValue: function (btnNumber) {
         if (btnNumber == 1 && this.input1.value) {
             navigator.clipboard.writeText(this.input1.value);
             console.log(`Значение КПП по месту регистрации: ${this.input1.value} скопироано в буфер обмена.`)
@@ -140,8 +140,8 @@ const OGRN = {
     input: document.getElementById("OGRNInput"),
     validationElement: document.getElementById('OGRNInputBlock'),
     getNewValue: (part) => {
-        if(!(/^[0-9]+$/i.test(part)) || part.length > 12) part = '';
-        for(let i = part.length; i < 12; i++) part += (Math.floor(Math.random() * 10)).toString();
+        if (!(/^[0-9]+$/i.test(part)) || part.length > 12) part = '';
+        for (let i = part.length; i < 12; i++) part += (Math.floor(Math.random() * 10)).toString();
         return part + (parseInt(part) % 11).toString().slice(-1);
     },
     setNewValue: () => {
@@ -153,12 +153,12 @@ const OGRN = {
     },
     validateValue: (value) => {
         value = value.replaceAll(' ', '');
-        if(value.length != 13) return false;
-        if(!(/^[0-9]+$/i.test(value))) return false;
-        if((parseInt(value.slice(0, 12)) % 11).toString().slice(-1) != value[12]) return false;
+        if (value.length != 13) return false;
+        if (!(/^[0-9]+$/i.test(value))) return false;
+        if ((parseInt(value.slice(0, 12)) % 11).toString().slice(-1) != value[12]) return false;
         return true;
     },
-    setValidation: function() {
+    setValidation: function () {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -202,8 +202,8 @@ const INNFL = {
     },
     validateValue: (value) => {
         value = value.replaceAll(' ', '');
-        if(value.length != 12) return false;
-        if(!(/^[0-9]+$/i.test(value))) return false;
+        if (value.length != 12) return false;
+        if (!(/^[0-9]+$/i.test(value))) return false;
         const coef1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
         const coef2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
         let sum1 = 0, sum2 = 0;
@@ -213,7 +213,7 @@ const INNFL = {
         if (value[11] !== (sum2 % 11 % 10).toString()) return false;
         return true;
     },
-    setValidation: function() {
+    setValidation: function () {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -239,8 +239,8 @@ const OGRNIP = {
     input: document.getElementById("OGRNIPInput"),
     validationElement: document.getElementById("OGRNIPInputBlock"),
     getNewValue: (part) => {
-        if(!(/^[0-9]+$/i.test(part)) || part.length > 14) part = '';
-        for(let i = part.length; i < 14; i++) part += (Math.floor(Math.random() * 10)).toString();
+        if (!(/^[0-9]+$/i.test(part)) || part.length > 14) part = '';
+        for (let i = part.length; i < 14; i++) part += (Math.floor(Math.random() * 10)).toString();
         return part + (parseInt(part) % 13).toString().slice(-1);
     },
     setNewValue: () => {
@@ -252,12 +252,12 @@ const OGRNIP = {
     },
     validateValue: (value) => {
         value = value.replaceAll(' ', '');
-        if(value.length != 15) return false;
-        if(!(/^[0-9]+$/i.test(value))) return false;
-        if((parseInt(value.slice(0, 14)) % 13).toString().slice(-1) != value[14]) return false;
+        if (value.length != 15) return false;
+        if (!(/^[0-9]+$/i.test(value))) return false;
+        if ((parseInt(value.slice(0, 14)) % 13).toString().slice(-1) != value[14]) return false;
         return true;
     },
-    setValidation: function() {
+    setValidation: function () {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -280,13 +280,39 @@ const SNILS = {
     copyBtn: document.getElementById("copySNILSBtn"),
     input: document.getElementById("SNILSInput"),
     validationElement: document.getElementById("SNILSInputBlock"),
-    getNewValue: (part) => { },
-    setNewValue: () => { },
+    getNewValue: (value) => {
+        value = value.replaceAll(' ', '').replaceAll('-', '');
+        if (value.length > 10 || !(/^[0-9]+$/.test(value))) value = '';
+        while(value.length < 9) value += (Math.floor(Math.random() * 10)).toString();
+        const coef = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+        let sum = 0;
+        for (let i = 0; i < coef.length; i++) sum += parseInt(value[i]) * coef[i];
+        if(sum < 100) value += ( '0' + sum.toString()).slice(-2);
+        else if(sum === 100) value += '00';
+        else value += ('0' + (sum % 101 % 100).toString()).slice(-2);
+        return value;
+    },
+    setNewValue: () => {
+        SNILS.input.value = SNILS.getNewValue(SNILS.input.value);
+        SNILS.setValidation();
+    },
     setEmptyValue: () => {
         SNILS.input.value = '';
     },
-    validateValue: (value) => { },
-    setValidation: function() {
+    validateValue: (value) => {
+        value = value.replaceAll(' ', '').replaceAll('-', '');
+        if (value.length != 11) return false;
+        if (!(/^[0-9]+$/.test(value))) return false;
+        const coef = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+        let sum = 0;
+        for (let i = 0; i < coef.length; i++) sum += parseInt(value[i]) * coef[i];
+        const controlNumber = parseInt(value.slice(-2));
+        if (!((  sum < 100 && controlNumber === sum) || 
+                (sum === 100 && controlNumber === 0) || 
+                (controlNumber === sum % 101 % 100))) return false;
+        return true;
+    },
+    setValidation: function () {
         if (this.validateValue(this.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
@@ -298,7 +324,10 @@ const SNILS = {
             this.validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: () => { }
+    copyValue: () => {
+        navigator.clipboard.writeText(SNILS.input.value);
+        console.log(`Значение СНИЛС: ${SNILS.input.value} скопироано в буфер обмена.`);
+    }
 };
 
 const UUID = {
@@ -428,7 +457,7 @@ function deleteAll(part) {
 
 // Слушаем события кнопки Сгенерировать всё
 const generateAllBtn = document.getElementById("generateAllBtn");
-generateAllBtn.addEventListener('click', () =>{
+generateAllBtn.addEventListener('click', () => {
     INNUL.setNewValue();
     INNUL.setValidation();
     KPP.setNewValue();
@@ -441,12 +470,14 @@ generateAllBtn.addEventListener('click', () =>{
     INNFL.setValidation();
     OGRNIP.setNewValue();
     OGRNIP.setValidation();
-    
+    SNILS.setNewValue();
+    SNILS.setValidation();
+
 });
 
 // Слушаем события кнопки Сбросить всё
 const deleteAllBtn = document.getElementById("deleteAllBtn");
-deleteAllBtn.addEventListener('click', () =>{
+deleteAllBtn.addEventListener('click', () => {
     INNUL.setEmptyValue();
     INNUL.setValidation();
     KPP.setEmptyValue();
@@ -459,7 +490,9 @@ deleteAllBtn.addEventListener('click', () =>{
     INNFL.setValidation();
     OGRNIP.setEmptyValue();
     OGRNIP.setValidation();
-    
+    SNILS.setEmptyValue();
+    SNILS.setValidation();
+
 });
 
 // Слушаем события блока ИННЮЛ
@@ -471,7 +504,7 @@ INNUL.input.addEventListener('mouseout', () => INNUL.setValidation());
 INNUL.copyBtn.addEventListener('click', () => INNUL.copyValue());
 
 // Слушаем события блока КПП
-KPP.generateBtn.addEventListener('click', ()=>{
+KPP.generateBtn.addEventListener('click', () => {
     KPP.setNewValue();
     KPP.setValidation(1);
     KPP.setValidation(2);
@@ -485,7 +518,7 @@ KPP.copyBtn2.addEventListener('click', () => KPP.copyValue(2));
 KPP.copyBtn3.addEventListener('click', () => KPP.copyValue(3));
 
 // Слушаем события блока ОГРН
-OGRN.generateBtn.addEventListener('click', ()=> {
+OGRN.generateBtn.addEventListener('click', () => {
     OGRN.setNewValue();
     OGRN.setValidation();
 });
@@ -493,7 +526,7 @@ OGRN.input.addEventListener('change', () => OGRN.setValidation());
 OGRN.copyBtn.addEventListener('click', () => OGRN.copyValue());
 
 // Слушаем события блока ИННФЛ
-INNFL.generateBtn.addEventListener('click', ()=> {
+INNFL.generateBtn.addEventListener('click', () => {
     INNFL.setNewValue();
     INNFL.setValidation();
 });
@@ -501,9 +534,17 @@ INNFL.input.addEventListener('change', () => INNFL.setValidation());
 INNFL.copyBtn.addEventListener('click', () => INNFL.copyValue());
 
 // Слушаем события блока ОГРНИП
-OGRNIP.generateBtn.addEventListener('click', ()=> {
+OGRNIP.generateBtn.addEventListener('click', () => {
     OGRNIP.setNewValue();
     OGRNIP.setValidation();
 });
 OGRNIP.input.addEventListener('change', () => OGRNIP.setValidation());
 OGRNIP.copyBtn.addEventListener('click', () => OGRNIP.copyValue());
+
+// Слушаем события блока СНИЛС
+SNILS.generateBtn.addEventListener('click', () => {
+    SNILS.setNewValue();
+    SNILS.setValidation();
+});
+SNILS.input.addEventListener('change', () => SNILS.setValidation());
+SNILS.copyBtn.addEventListener('click', () => SNILS.copyValue());
