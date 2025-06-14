@@ -139,7 +139,7 @@ const OGRN = {
     input: document.getElementById("OGRNInput"),
     validationElement: document.getElementById('OGRNInputBlock'),
     getNewValue: (part) => {
-        if (!(/^[0-9]+$/i.test(part)) || part.length > 12) part = '';
+        if (!(/^[0-9]+$/i.test(part)) || part.length > 12) part = '1';
         for (let i = part.length; i < 12; i++) part += (Math.floor(Math.random() * 10)).toString();
         return part + (parseInt(part) % 11).toString().slice(-1);
     },
@@ -238,7 +238,7 @@ const OGRNIP = {
     input: document.getElementById("OGRNIPInput"),
     validationElement: document.getElementById("OGRNIPInputBlock"),
     getNewValue: (part) => {
-        if (!(/^[0-9]+$/i.test(part)) || part.length > 14) part = '';
+        if (!(/^[0-9]+$/i.test(part)) || part.length > 14) part = '3';
         for (let i = part.length; i < 14; i++) part += (Math.floor(Math.random() * 10)).toString();
         return part + (parseInt(part) % 13).toString().slice(-1);
     },
