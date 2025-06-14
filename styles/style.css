@@ -52,10 +52,12 @@ body {
     
 }
 
-.btn:active, .copy-btn:active{
+.btn:active {
     border:2px solid #4898d6;
-    border-radius: 10px;
     
+}
+.copy-btn:active {
+    border:2px solid #448637;
 }
 
 .btn-generate-all{

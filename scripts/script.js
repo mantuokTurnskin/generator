@@ -355,11 +355,38 @@ const UUID = {
     copyBtn: document.getElementById("copyUUIDBtn"),
     input: document.getElementById("UUIDInput"),
     validationElement: document.getElementById("UUIDInputBlock"),
-    getNewValue: (part) => { },
-    setNewValue: () => { },
-    validateValue: (value) => { },
-    setValidation: () => {
-        if (this.validateValue(this.input.value)) {
+    getNewValue: (part) => {
+        part = part.replaceAll(' ', '');
+        if (part.length > 8 && part[8] !== '-') part = `${part.slice(0, 8)}-${part.slice(8)}`;
+        if (part.length > 13 && part[13] !== '-') part = `${part.slice(0, 13)}-${part.slice(13)}`;
+        if (part.length > 18 && part[18] !== '-') part = `${part.slice(0, 18)}-${part.slice(18)}`;
+        if (part.length > 23 && part[23] !== '-') part = `${part.slice(0, 23)}-${part.slice(23)}`;
+        if (!(/^[0-9a-f]+$/i.test(part.replaceAll('-', ''))) || part.length > 35) part = '';
+        const symbols = '0123456789abcdef';
+        let length = part.length;
+        while (length < 36){
+            if (length === 8 || length === 13 || length === 18 || length === 23) part += '-';
+            else   part += symbols[Math.floor(Math.random() * 15)];
+            length++;
+        }
+        return part;
+    },
+    setNewValue: () => {
+        UUID.input.value = UUID.getNewValue(UUID.input.value);
+        UUID.setValidation();
+    },
+    setEmptyValue: () => {
+        UUID.input.value = '';
+    },
+    validateValue: (value) => {
+        value = value.replaceAll(' ', '').toLowerCase();
+        if (value.length !== 36) return false;
+        if (!(/^[0-9a-f]+$/.test(value.replaceAll('-', '')))) return false;
+        if (value[8] !== '-' || value[13] !== '-' || value[18] !== '-' || value[23] !== '-' ) return false;
+        return true;
+    },
+    setValidation: function() {
+        if (this.validateValue(UUID.input.value)) {
             this.validationElement.classList.add('validation-passed');
             this.validationElement.classList.remove('validation-failed');
             this.validationElement.classList.remove('validation-off');
@@ -370,7 +397,10 @@ const UUID = {
             this.validationElement.classList.remove('validation-off');
         }
     },
-    copyValue: () => { }
+    copyValue: () => {
+        navigator.clipboard.writeText(UUID.input.value);
+        console.log(`Значение UUID: ${UUID.input.value} скопироано в буфер обмена.`);
+    }
 };
 
 const BIN = {
@@ -492,6 +522,8 @@ generateAllBtn.addEventListener('click', () => {
     OGRNIP.setValidation();
     SNILS.setNewValue();
     SNILS.setValidation();
+    UUID.setNewValue();
+    UUID.setValidation();
 
 });
 
@@ -513,6 +545,8 @@ deleteAllBtn.addEventListener('click', () => {
     SNILS.setEmptyValue();
     SNILS.setValidation(1);
     SNILS.setValidation(2);
+    UUID.setEmptyValue();
+    UUID.setValidation();
 
 });
 
@@ -571,3 +605,11 @@ SNILS.input1.addEventListener('change', () => SNILS.setValidation(1));
 SNILS.input2.addEventListener('change', () => SNILS.setValidation(2));
 SNILS.copyBtn1.addEventListener('click', () => SNILS.copyValue(1));
 SNILS.copyBtn2.addEventListener('click', () => SNILS.copyValue(2));
+
+// Слушаем события блока UUID
+UUID.generateBtn.addEventListener('click', () => {
+    UUID.setNewValue();
+    UUID.setValidation();
+});
+UUID.input.addEventListener('change', () => UUID.setValidation());
+UUID.copyBtn.addEventListener('click', () => UUID.copyValue());
