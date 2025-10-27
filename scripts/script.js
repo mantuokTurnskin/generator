@@ -140,8 +140,7 @@ class GeneratorItem {
             else if(sum === 100) part += '00';
             else part += ('0' + (sum % 101 % 100).toString()).slice(-2);
             if (this.blockName === 'snils1') part = `${part.slice(0,3)}-${part.slice(3,6)}-${part.slice(6,9)} ${part.slice(-2)}`;
-            const snils1Value = localStorage.getItem(`requisiteGenerator_snils1`).replaceAll(' ', '').replaceAll('-', '') || '';
-            if (this.blockName === 'snils2' && this.setValueCounter % 2 === 0) part = snils1Value;
+            if (this.blockName === 'snils2' && this.setValueCounter % 2 === 0 && localStorage.getItem(`requisiteGenerator_snils1`)) part = localStorage.getItem(`requisiteGenerator_snils1`).replaceAll(' ', '').replaceAll('-', '');
         }
         if (this.blockName === 'ogrnip') {
             if (!(/^[0-9]+$/i.test(part)) || part.length > 14) part = '3';
